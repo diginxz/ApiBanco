@@ -1,6 +1,8 @@
 <?php
 
 namespace API\Model;
+
+use API\DAO\ChavePixDAO;
 use Exception;
 
 class ChavePixModel extends Model {
@@ -8,21 +10,28 @@ class ChavePixModel extends Model {
 
 	public function save() 
 	{
-
+		if($this->id == null)
+		return (new ChavePixDAO())->insert($this);
+	else
+		return (new ChavePixDAO())->update($this);
 	}
 
-	public function getAllRows() 
+	public function getAllRows(string $query = null) 
 	{
+		$dao = new ChavePixDAO();
 
+        $this->rows = ($query == null) ? $dao->select() : $dao->search($query);
 	}
 
 	public function delete(int $id) 
 	{
-
+		(new ChavePixDAO())->delete($id);
 	}
 
 	public function getById(int $id) 
 	{
-        
+        $dao = new ChavePixDAO();
+
+		$this->rows = $dao->selectById($id);
 	}
 }
