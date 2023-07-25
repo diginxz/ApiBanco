@@ -35,7 +35,7 @@ class ChavePixDAO extends DAO {
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute($str_busca);
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, "Api\Model\ChavePixModel");
+        return $stmt->fetchAll(PDO::FETCH_CLASS, "API\Model\ChavePixModel");
     }
 
     public function update(ChavePixModel $model)
@@ -49,9 +49,7 @@ class ChavePixDAO extends DAO {
         $stmt->bindValue(4, $model->id);
         $stmt->execute();
 
-        $model->id = $this->conexao->lastInsertId();
-
-        return $model;
+        return $stmt->execute();
     }
 
     public function select()
@@ -65,7 +63,7 @@ class ChavePixDAO extends DAO {
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, "Api\Model\ChavePixModel");
+        return $stmt->fetchAll(PDO::FETCH_CLASS, "API\Model\ChavePixModel");
     }
 
     public function selectById(int $id)
@@ -81,7 +79,7 @@ class ChavePixDAO extends DAO {
         $stmt->bindValue(1, $id);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, "Api\Model\ChavePixModel");
+        return $stmt->fetchAll(PDO::FETCH_CLASS, "API\Model\ChavePixModel");
     }
 
     public function delete(int $id)
