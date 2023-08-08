@@ -98,7 +98,7 @@ class CorrentistaDAO extends DAO {
         $stmt->execute();
 
         //return $stmt->fetchObject("API\Model\CorrentistaModel"); // Retornando um objeto específico PessoaModel
-        $obj = $stmt->fetchObject("App\Model\CorrentistaModel");
+        $obj = $stmt->fetchObject("API\Model\CorrentistaModel");
 
         return is_object($obj) ? $obj : new CorrentistaModel();
     }
